@@ -1,0 +1,88 @@
+header {
+    min-width: 100%;
+    background-color: black;
+    margin: 0 auto;
+}
+
+.headContent {
+    max-width: 1500px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 15px 0 ;
+}
+
+.logo {
+    font-family: 'Rubik Glitch';
+    color: white;
+    font-weight: 400;
+    margin: 0;
+    font-size: 28px;
+}
+
+.logo span {
+    color: rgb(238, 241, 49);
+    font-family: cursive;
+    font-size: 26px;
+}
+
+.searchBox {
+    background-color: rgba(128, 128, 128, 0.6);
+    border-radius: 10px;
+    display: flex;
+    width: 400px;
+    max-height: 23px;
+}
+
+.headerForm {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.searchInput {
+    display: inline-block;
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    max-width: 100%;
+    font-family: cursive;
+    outline: none;
+    padding-left: 5px;
+    padding-bottom: 3px;
+    font-size: 12px;
+    color: rgb(236, 242, 197);
+}
+
+.searchInput::placeholder {
+    color: rgb(236, 242, 197);
+    font-size: 12px;
+}
+
+.headerForm button {
+    background-color: transparent;
+    color: rgb(236, 242, 197);
+    border: none;
+    font-size: 12px;
+    font-family: cursive;
+    padding-bottom: 4px;
+}
+
+.headerForm input:last-child {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 0 10px 10px 0;
+    padding-bottom: 3px;
+    color: rgb(238, 241, 49);
+    font-family: cursive;
+    cursor: pointer;
+}
+
+.changeColorBtn {
+    background-color: aqua;
+    width: 30px;
+    height: 30px;
+}

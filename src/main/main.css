@@ -1,0 +1,118 @@
+.main {
+    max-width: 1600px;
+    margin: 0 auto;
+    background-color: white;
+    display: flex;
+}
+
+.afterAside {
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+.premieres {
+    font-family: cursive;
+    font-weight: 900;
+    text-align: center;
+    font-size: 24px;
+    margin: 20px 0 0;
+}
+
+.posterList {
+    max-width: 1200px;
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0;
+    margin: 10px 0 0;
+}
+
+.poster {
+    list-style-type: none;
+    display: inline-block;
+    padding: 10px;
+}
+
+.posterRating {
+    position: relative;
+}
+
+.poster p {
+    max-width: 140px;
+    font-family: cursive;
+    margin: 5px 0 0 0;
+    font-size: 15px;
+    max-width: 215px;
+}
+
+.poster .posterRating p {
+    position: absolute;
+    margin: 0;
+    right: 1%;
+    top: 10%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 0, 0, 0.9);
+    width: 28px;
+    height: 28px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rating span {
+    display: inline-block;
+}
+
+.poster p:last-child {
+    font-size: 13px;
+}
+
+.zeroResponse {
+    font-family: cursive;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.learnMore {
+    position: absolute;
+    font-family: cursive;
+    font-weight: bold;
+    font-size: 20px;
+    width: 100%;
+    height: 290px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -51%);
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background-color: transparent;
+    transition-duration: 0.5s;
+    display: flex;
+    margin: 0;
+}
+
+.learnMore span {
+    transition-duration: 0.5s;
+    color: transparent;
+}
+
+.posterRating:hover .learnMore {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.posterRating:hover .learnMore span {
+    color: yellow;
+}
+
+.posterRating a {
+    position: absolute;
+    left: 0;
+    display: inline-block;
+    width: 100%;
+    height: 290px;
+    cursor: pointer;
+    z-index: 2;
+}

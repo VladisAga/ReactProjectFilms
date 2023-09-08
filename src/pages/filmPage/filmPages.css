@@ -1,0 +1,180 @@
+.mainFilmPage {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding-top: 20px;
+    position: relative;
+    font-family: cursive;
+}
+
+.boxMain {
+    max-width: 1500px;
+    margin: 0 auto;
+    display: flex;
+    column-gap: 50px;
+}
+
+.posterAndRating {
+    position: relative;
+}
+
+.boxImg {
+    max-width: 400px;
+    min-width: 200px;
+    position: relative;
+}
+
+.boxImg img {
+    height: 457px;
+    width: 305px;
+}
+
+.filmPageRating {
+    border-radius: 30px;
+    position: absolute;
+    width: 3em;
+    height: 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 3%;
+    right: 6%;
+}
+
+.filmPageRating span {
+    display: inline-block;
+    font-size: 1.3em;
+}
+
+.infAboutFilm {
+    width: 100%;
+}
+
+.infAboutFilm h1 {
+    margin: 0;
+    font-size: 3.5em;
+}
+
+.infAboutFilm p {
+    margin: 5px 0 0;
+    font-size: 1.7em;
+    color: rgb(0, 0, 0);
+}
+
+.infTopic p {
+    color: rgba(0, 0, 0, 0.7);
+    margin: 0;
+    font-size: 26px;
+}
+
+.infFilm {
+    display: flex;
+    align-items: flex-end;
+}
+
+.infTopic p:first-child {
+    margin-top: 30px;
+    font-size: 32px;
+    font-weight: bolder;
+    color: black;
+}
+
+.infFilmData p {
+    margin: 0;
+    font-size: 26px;
+}
+
+.desription {
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+.listInFilmPage li {
+    list-style-type: none;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.listInFilmPage li:not(:last-child)::after {
+    content: ',';
+}
+
+.listInFilmPage {
+    margin: 0;
+    padding: 0;
+    font-size: 26px;
+}
+
+.pWithList {
+    display: flex;
+}
+
+.infFilmData {
+    margin-left: 7%;
+}
+
+.infFilmData a {
+    color: black;
+    font-size: 26px;
+    cursor: pointer;
+}
+
+.desription p:first-child {
+    margin: 15px 0 0;
+    font-size: 32px;
+    font-weight: bolder;
+    color: black;
+}
+
+.desription p:last-child {
+    margin: 10px 0 0;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+@media all and (max-width: 1500px) {
+    .mainFilmPage {
+        padding: 20px 10px 0;
+    }
+}
+
+@media all and (max-width: 996px) {
+    .infAboutFilm h1 {
+        font-size: 2.5em;
+    }
+}
+
+@media all and (max-width: 957px) {
+
+    .infTopic p,
+    .infFilmData p,
+    .infFilmData a,
+    .listInFilmPage li {
+        font-size: 23px;
+    }
+}
+
+@media all and (max-width: 957px) {
+    .boxImg img {
+        height: 407px;
+        width: 255px;
+    }
+}
+
+@media all and (max-width: 840px) {
+    .boxImg img {
+        height: 100%;
+        width: 100%;
+    }
+}
+
+@media all and (max-width: 770px) {
+    .infAboutFilm h1 {
+        font-size: 2em;
+    }
+
+    .filmPageRating {
+        width: 2.4em;
+        height: 2.4em;
+        font-size: 13px;
+    }
+}
