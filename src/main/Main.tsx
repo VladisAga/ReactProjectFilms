@@ -80,9 +80,11 @@ export const Main: React.FC<MainProps> = ({ btnValue, valueChoice, minRating, ma
     const jsonRef = useRef<number>(0);
     const urlRef = useRef<string>('');
     const urlTopRef = useRef<string>('');
-    const ArrJsonRef = useRef<Film[]>([]);
+    const ArrJsonRef = useRef<Film[]>([]);  
 
-    console.log(value)
+    let position;
+
+    (filmArr.length === 0 && jsonRef.current === 0) ? (position = {left: '50%', transform: 'translate(-25%)'}) : (position = {left: '19.6vw'});
 
     useEffect(() => {
         setFilmArr([]);
@@ -131,7 +133,7 @@ export const Main: React.FC<MainProps> = ({ btnValue, valueChoice, minRating, ma
                 }}>
                     <Aside />
                 </ForAside.Provider>
-                <div className='afterAside'>
+                <div style={position} className='afterAside'>
                     {urlRef.current === urlTopRef.current ? (<p className='premieres'>Popular films: top 100 </p>) : (<p className='premieres'>Your search: {value}</p>)}
                     <ul className='posterList'>
                         {filmArr && filmArr.map((film, id) => (

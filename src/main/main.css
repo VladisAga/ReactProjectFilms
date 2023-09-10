@@ -3,11 +3,13 @@
     margin: 0 auto;
     background-color: white;
     display: flex;
+    position: relative;
 }
 
 .afterAside {
     max-width: 80%;
-    margin: 0 auto;
+    margin-top: 66px;
+    position: absolute;
 }
 
 .premieres {
@@ -73,6 +75,7 @@
     font-family: cursive;
     font-weight: bold;
     font-size: 30px;
+    margin: 0 auto;
 }
 
 .learnMore {

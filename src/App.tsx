@@ -47,6 +47,7 @@ function App() {
   const [btnValue, setBtnValue] = useState<boolean>(false);
 
   const [arrBasket, setArrBasket] = useState<Film[]>([]);
+  console.log(arrBasket)
 
   const submit = (event: any) => {
     event.preventDefault();

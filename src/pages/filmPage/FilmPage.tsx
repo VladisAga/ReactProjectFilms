@@ -30,6 +30,9 @@ export const FilmPage: React.FC<FilmPageProps> = ({ arrBasket, setArrBasket }) =
         const basket = [...arrBasket];
         const index = basket.findIndex((currentValue) => currentValue.kinopoiskId === filmIdObj.kinopoiskId);
         (index === -1) ? (setArrBasket([...arrBasket, filmIdObj])) : (setArrBasket([...basket]));
+        console.log(arrBasket);
+        console.log(index);
+        console.log(filmIdObj)
     }
 
     const handleDelFromBasket = () => {

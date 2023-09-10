@@ -2,4 +2,23 @@ aside {
     background-color: black;
     width: 20%;
     color: white;
+    height: 100vh;
+    margin-top: 66px;
+    position: fixed;
+}
+
+.navigation {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    row-gap: 20px;
+    margin-top: 20px;
+}
+
+.navigation a {
+    text-decoration: none;
+    color: white;
+    display: inline-block;
+    font-family: cursive;
+    font-size: 27px;
 }

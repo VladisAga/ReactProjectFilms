@@ -2,6 +2,8 @@ header {
     min-width: 100%;
     background-color: black;
     margin: 0 auto;
+    position: fixed;
+    z-index: 2;
 }
 
 .headContent {
@@ -86,3 +88,15 @@ header {
     width: 30px;
     height: 30px;
 }
+
+.headerNav a {
+    text-decoration: none;
+    color: white;
+    display: inline-block;
+    font-family: cursive;
+    font-size: 27px;
+}
+
+.headerNav a:nth-child(2) {
+    margin: 0 60px;
+} 

@@ -10,9 +10,13 @@ export const PaginationBtn = () => {
     const { filterLength, filterPagination, setFilterPagination } = useContext(FilterDataPagination);
     const location = useLocation();
 
+    let empty = {};
+
+    (arr.length === 0) ? (empty = {display: 'none'}) : (empty = {display: 'flex'});
+
     return (
         <>
-            {arr.length !== 0 ? (<div className='pagination'>
+            {arr.length !== 0 ? (<div style={empty} className='pagination'>
                 <button onClick={() => pagePopular > 1 && setPagePopular(pagePopular - 1)}>
                     <span className='pagePagination'>&lsaquo; Previous</span>
                 </button>
@@ -20,7 +24,7 @@ export const PaginationBtn = () => {
                 <button onClick={() => pagePopular < 5 && setPagePopular(pagePopular + 1)}>
                     <span className='pagePagination'> Next &rsaquo;</span>
                 </button>
-            </div>) : (location.pathname === '/filterPage') ? (<div className='pagination'>
+            </div>) : (location.pathname === '/filterPage') ? (<div style={empty} className='pagination'>
                 <button onClick={() => filterPagination > 1 && setFilterPagination(filterPagination - 1)}>
                     <span className='pagePagination'>&lsaquo; Previous</span>
                 </button>
@@ -28,7 +32,7 @@ export const PaginationBtn = () => {
                 <button onClick={() => filterLength >= 20 && setFilterPagination(filterPagination + 1)}>
                     <span className='pagePagination'> Next &rsaquo;</span>
                 </button>
-            </div>) : (<div className='pagination'>
+            </div>) : (<div style={empty} className='pagination'>
                 <button onClick={() => pageKeyWord > 1 && setPageKeyWord(pageKeyWord - 1)}>
                     <span className='pagePagination'>&lsaquo; Previous</span>
                 </button>

@@ -1,7 +1,7 @@
 .mainFilmPage {
     max-width: 1600px;
     margin: 0 auto;
-    padding-top: 20px;
+    padding-top: 86px;
     position: relative;
     font-family: cursive;
 }
@@ -133,7 +133,7 @@
 
 @media all and (max-width: 1500px) {
     .mainFilmPage {
-        padding: 20px 10px 0;
+        padding: 86px 10px 0;
     }
 }
 

@@ -16,7 +16,22 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ type, setType, min, setMin, max, setMax }) => {
     const { submit, del, setValueChoice, setBtnValue, valueChoice, btnValue } = useContext(StringSearchValue);
     const location = useLocation();
-    console.log(min);
+
+    let styleMain;
+    let styleFilter;
+    let styleBasket;
+
+    switch (location.pathname) {
+        case ('/'):
+            styleMain = { color: 'yellow' };
+            break;
+        case ('/filterPage'):
+            styleFilter = { color: 'yellow' };
+            break;
+        case ('/basket'):
+            styleBasket = { color: 'yellow' };
+            break;
+    }
 
     return (
         <>
@@ -35,20 +50,25 @@ export const Header: React.FC<HeaderProps> = ({ type, setType, min, setMin, max,
                                 <button onClick={del}>x</button>
                                 <input type="submit" value='search' />
                             </form>
-                        </div>) : (location.pathname === '/filterPage') ? (<FilterJsx 
-                        type = {type}
-                        setType={setType}
-                        min={min}
-                        setMin={setMin}
-                        setMax={setMax}
-                        max={max}
-                        setValueChoice={setValueChoice}
-                        valueChoice={valueChoice}
-                        setBtnValue={setBtnValue}
-                        btnValue={btnValue}
+                        </div>) : (location.pathname === '/filterPage') ? (<FilterJsx
+                            type={type}
+                            setType={setType}
+                            min={min}
+                            setMin={setMin}
+                            setMax={setMax}
+                            max={max}
+                            setValueChoice={setValueChoice}
+                            valueChoice={valueChoice}
+                            setBtnValue={setBtnValue}
+                            btnValue={btnValue}
 
                         />) :
-                            (<Link to='/'>Home</Link>)
+                            (<nav className='headerNav'>
+                                <Link style={styleMain} to='/'>Home</Link>
+                                <Link style={styleFilter} to='/filterPage'>Filter</Link>
+                                <Link style={styleBasket} to='/basket'>Basket</Link>
+                            </nav>
+                            )
                     }
                     <div className='changeColorBtn'></div>
                 </div>
