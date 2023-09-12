@@ -13,7 +13,7 @@ interface HeaderProps {
 
 export const FilterJsx: React.FC<HeaderProps> = ({ type, setType, min, setMin, max, setMax, setValueChoice, valueChoice, setBtnValue, btnValue }) => {
 
-    console.log(min);
+    console.log(max + 'jsx');
     return (
         <>
             <p>Тип фильма</p>

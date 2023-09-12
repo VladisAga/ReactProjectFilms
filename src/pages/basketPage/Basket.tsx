@@ -21,7 +21,6 @@ export const Basket: React.FC<BasketProps> = ({ setArrBasket, arrBasket }) => {
     return (
         <>
             <main className="main">
-                <Aside />
                 <ul className='posterList'>
                     {arrBasket.map((value, id) => (
                         <li className='poster' key={id}>

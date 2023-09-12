@@ -1,8 +1,7 @@
 import './header.css';
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { StringSearchValue } from '../App'
-import { FilterJsx } from '../pages/filterPage/FilterJSX';
 
 interface HeaderProps {
     type: string;
@@ -50,19 +49,7 @@ export const Header: React.FC<HeaderProps> = ({ type, setType, min, setMin, max,
                                 <button onClick={del}>x</button>
                                 <input type="submit" value='search' />
                             </form>
-                        </div>) : (location.pathname === '/filterPage') ? (<FilterJsx
-                            type={type}
-                            setType={setType}
-                            min={min}
-                            setMin={setMin}
-                            setMax={setMax}
-                            max={max}
-                            setValueChoice={setValueChoice}
-                            valueChoice={valueChoice}
-                            setBtnValue={setBtnValue}
-                            btnValue={btnValue}
-
-                        />) :
+                        </div>)  :
                             (<nav className='headerNav'>
                                 <Link style={styleMain} to='/'>Home</Link>
                                 <Link style={styleFilter} to='/filterPage'>Filter</Link>

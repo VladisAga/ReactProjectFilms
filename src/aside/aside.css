@@ -5,6 +5,7 @@ aside {
     height: 100vh;
     margin-top: 66px;
     position: fixed;
+    max-width: 406px;
 }
 
 .navigation {

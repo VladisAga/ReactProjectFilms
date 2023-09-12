@@ -13,6 +13,11 @@ interface FilterProps {
     min: string;
     max: string;
     type: string;
+    setTypeFilm: React.Dispatch<React.SetStateAction<string>>,
+    setMaxRating: React.Dispatch<React.SetStateAction<string>>,
+    setMinRating: React.Dispatch<React.SetStateAction<string>>,
+    setValueChoice: React.Dispatch<React.SetStateAction<string>>,
+    setBtnValue: React.Dispatch<React.SetStateAction<boolean>>,
 }
 
 interface FilterContext {
@@ -27,14 +32,17 @@ export const FilterDataPagination = createContext<FilterContext>({
     setFilterPagination: () => { },
 });
 
-export const FilterPage: React.FC<FilterProps> = ({ value, btnValue, min, max, type }) => {
+export const FilterPage: React.FC<FilterProps> = ({ value, btnValue, min, max, type, setBtnValue, setMaxRating, setMinRating, setTypeFilm, setValueChoice }) => {
 
     const [filterPagination, setFilterPagination] = useState(1);
     const filterLengthRef = useRef(0);
 
     const [arr, setArr] = useState<Film[]>([]);
+    console.log(max);
 
-    console.log(filterPagination);
+    let position;
+
+    (arr.length === 0) ? (position = { left: '50%', transform: 'translate(-25%)' }) : (position = { left: '19.6vw' });
 
     useEffect(() => {
         setArr([]);
@@ -57,9 +65,20 @@ export const FilterPage: React.FC<FilterProps> = ({ value, btnValue, min, max, t
     return (
         <>
             <main className='main'>
-                <Aside/>
-                <div className='afterAside'>
-                    {value.length === 0 ? (<p>Здесь будет отображаться список фильмов по вашим предпочтениям</p>) : (<p>Список на основе ваших предпочтений</p>)}
+                <Aside
+                    value1={value}
+                    btnValue1={btnValue}
+                    min1={min}
+                    max1={max}
+                    type1={type}
+                    setBtnValue1={setBtnValue}
+                    setMinRating1={setMinRating}
+                    setMaxRating1={setMaxRating}
+                    setTypeFilm1={setTypeFilm}
+                    setValueChoice1={setValueChoice}
+                />
+                <div style={position} className='afterAside'>
+                    {filterLengthRef.current === 0 ? (<p className='zeroResponse' >Здесь будет отображаться список фильмов по вашим предпочтениям</p>) : (<p className='premieres'>Список на основе ваших предпочтений</p>)}
                     <ul className='posterList'>
                         {arr && arr.map((film, id) => (
                             <li className='poster' key={id}>

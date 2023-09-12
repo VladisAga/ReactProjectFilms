@@ -15,6 +15,9 @@ type Context = {
   valueChoice: string;
   btnValue: boolean;
   setValueChoice: React.Dispatch<React.SetStateAction<string>>;
+  setMinRating: React.Dispatch<React.SetStateAction<string>>;
+  setMaxRating: React.Dispatch<React.SetStateAction<string>>;
+  setTypeFilm: React.Dispatch<React.SetStateAction<string>>;
   setBtnValue: React.Dispatch<React.SetStateAction<boolean>>;
   minRating: string;
   maxRating: string;
@@ -26,6 +29,9 @@ type Context = {
 export const StringSearchValue = createContext<Context>({
   value: '',
   submit: () => { },
+  setTypeFilm: () => {},
+  setMaxRating: () => {},
+  setMinRating: () => {},
   del: () => { },
   valueChoice: '',
   btnValue: false,
@@ -47,7 +53,7 @@ function App() {
   const [btnValue, setBtnValue] = useState<boolean>(false);
 
   const [arrBasket, setArrBasket] = useState<Film[]>([]);
-  console.log(arrBasket)
+ console.log(maxRating);
 
   const submit = (event: any) => {
     event.preventDefault();
@@ -76,6 +82,9 @@ function App() {
             btnValue: btnValue,
             setValueChoice,
             setBtnValue,
+            setMaxRating,
+            setMinRating, 
+            setTypeFilm,
             minRating: minRating,
             maxRating: maxRating,
             typeFilm: typeFilm,
@@ -100,6 +109,9 @@ function App() {
                 value: filterValue,
                 submit,
                 del,
+                setMaxRating,
+                setMinRating, 
+                setTypeFilm,
                 setValueChoice,
                 setBtnValue,
                 valueChoice: valueChoice,
@@ -132,6 +144,11 @@ function App() {
               min={minRating}
               max={maxRating}
               type={typeFilm}
+              setBtnValue={setBtnValue}
+              setMaxRating={setMaxRating}
+              setMinRating={setMinRating}
+              setTypeFilm={setTypeFilm}
+              setValueChoice={setValueChoice}
             />}
           />
           <Route path='basket' element={<Basket

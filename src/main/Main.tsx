@@ -57,6 +57,11 @@ interface ContextProps {
     type: string;
     arrBasket: any[];
     setArrBasket: React.Dispatch<React.SetStateAction<any[]>>
+    setTypeFilm: React.Dispatch<React.SetStateAction<string>>;
+    setMinRating: React.Dispatch<React.SetStateAction<string>>;
+    setMaxRating: React.Dispatch<React.SetStateAction<string>>;
+    setValueChoice: React.Dispatch<React.SetStateAction<string>>;
+    setBtnValue: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const ForAside = createContext<ContextProps>({
@@ -66,16 +71,23 @@ export const ForAside = createContext<ContextProps>({
     max: '',
     type: '',
     arrBasket: [],
-    setArrBasket: () => { }
+    setArrBasket: () => { },
+    setTypeFilm: () => {},
+    setMaxRating: () => {},
+    setMinRating: () => {},
+    setValueChoice: () => {},
+    setBtnValue: () => {},
 });
 
 export const Main: React.FC<MainProps> = ({ btnValue, valueChoice, minRating, maxRating, typeFilm }) => {
 
     const [filmArr, setFilmArr] = useState<Film[]>([]);
     const [filmArr1, setFilmArr1] = useState<Film[]>([]);
-    const { value, arrBasket, setArrBasket } = useContext(StringSearchValue);
+    const { value, arrBasket, setArrBasket, setMaxRating, setMinRating, setTypeFilm, setBtnValue, setValueChoice } = useContext(StringSearchValue);
     const [pageKeyWord, setPageKeyWord] = useState<number>(1);
     const [pagePopular, setPagePopular] = useState<number>(1);
+
+    console.log(maxRating)
 
     const jsonRef = useRef<number>(0);
     const urlRef = useRef<string>('');
@@ -129,9 +141,25 @@ export const Main: React.FC<MainProps> = ({ btnValue, valueChoice, minRating, ma
                     max: maxRating,
                     type: typeFilm,
                     arrBasket: arrBasket,
-                    setArrBasket
+                    setArrBasket,
+                    setMaxRating,
+                    setMinRating, 
+                    setTypeFilm,
+                    setValueChoice,
+                    setBtnValue
                 }}>
-                    <Aside />
+                    <Aside
+                    value1={value}
+                    btnValue1={btnValue}
+                    min1={minRating}
+                    max1={maxRating}
+                    setBtnValue1={setBtnValue}
+                    setMaxRating1={setMaxRating}
+                    setMinRating1={setMinRating}
+                    setTypeFilm1={setTypeFilm}
+                    type1={typeFilm}
+                    setValueChoice1={setValueChoice}
+                    />
                 </ForAside.Provider>
                 <div style={position} className='afterAside'>
                     {urlRef.current === urlTopRef.current ? (<p className='premieres'>Popular films: top 100 </p>) : (<p className='premieres'>Your search: {value}</p>)}
