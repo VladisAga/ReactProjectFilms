@@ -1,7 +1,6 @@
 import { Film } from "../../main/Main";
 import { Link } from "react-router-dom";
 import { lengthName, getRatingStyle, ratingOnPage } from '../../main/function';
-import { Aside } from "../../aside/Aside";
 
 interface BasketProps {
     arrBasket: Film[];

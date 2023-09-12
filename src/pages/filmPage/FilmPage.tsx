@@ -11,6 +11,7 @@ interface FilmPageProps {
 
 export const FilmPage: React.FC<FilmPageProps> = ({ arrBasket, setArrBasket }) => {
     const { filmId } = useParams();
+    const [btnValue, setBtnValue] = useState(false);
 
     const [filmIdObj, setFilmIdObj] = useState<Film>({} as Film);
 
@@ -24,7 +25,7 @@ export const FilmPage: React.FC<FilmPageProps> = ({ arrBasket, setArrBasket }) =
         })
             .then(res => res.json())
             .then(json => setFilmIdObj(json as Film))
-    }, [filmId])
+    }, [filmId]);
 
     const handleAddToBasket = () => {
         const basket = [...arrBasket];
@@ -40,6 +41,17 @@ export const FilmPage: React.FC<FilmPageProps> = ({ arrBasket, setArrBasket }) =
         const basket2 = basket.filter((currentValue) => currentValue.kinopoiskId !== filmIdObj.kinopoiskId);
         setArrBasket([...basket2]);
     }
+
+    useEffect(() => {
+        (btnValue) ? (handleAddToBasket()) : (handleDelFromBasket());
+    }, [btnValue]);
+
+    let btnStyle;
+
+    (btnValue) ?
+        (btnStyle = { backgroundImage: `url(data:image/svg+xml;charset=utf-8,%3Csvg width='24' height='24' xmlns='http://www.w3.org/2000/svg' fill='%23f50'%3E%3Cpath d='M5.5 3.5h13V21L12 17.45 5.5 21V3.5Z'/%3E%3C/svg%3E)` })
+        :
+        (btnStyle = { backgroundImage: `url(data:image/svg+xml;charset=utf-8,%3Csvg width='24' height='24' xmlns='http://www.w3.org/2000/svg' fill=white d='M5.5 3.5h13V21L12 17.45 5.5 21V3.5Z'/%3E%3C/svg%3E)` });
 
     return (
         <>
@@ -89,8 +101,12 @@ export const FilmPage: React.FC<FilmPageProps> = ({ arrBasket, setArrBasket }) =
                     <p>Description</p>
                     <p>{filmIdObj?.description}</p>
                 </div>
-                <button onClick={handleAddToBasket}>Добавить</button>
-                <button onClick={handleDelFromBasket}>Удалить</button>
+                <button onClick={() => { setBtnValue(!btnValue) }}> dcscs</button>
+                <div >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" stroke="black" stroke-width="2">
+                        <path d="M5.5 3.5h13V21L12 17.45 5.5 21V3.5Z" />
+                    </svg>
+                </div>
             </main>
         </>
     )
