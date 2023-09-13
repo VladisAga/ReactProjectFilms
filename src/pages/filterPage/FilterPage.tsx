@@ -1,6 +1,6 @@
-import './filterPage.css';
+import './filterJSX.css'
 import { useEffect, useState, useRef, createContext } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Film } from '../../main/Main';
 import { lengthName, rating, getRatingStyle, ratingOnPage } from '../../main/function';
 import '../../main/main.css';
@@ -38,11 +38,6 @@ export const FilterPage: React.FC<FilterProps> = ({ value, btnValue, min, max, t
     const filterLengthRef = useRef(0);
 
     const [arr, setArr] = useState<Film[]>([]);
-    console.log(max);
-
-    let position;
-
-    (arr.length === 0) ? (position = { left: '50%', transform: 'translate(-25%)' }) : (position = { left: '19.6vw' });
 
     useEffect(() => {
         setArr([]);
@@ -59,7 +54,6 @@ export const FilterPage: React.FC<FilterProps> = ({ value, btnValue, min, max, t
         })
             .then(res => res.json())
             .then(json => { setArr(json.items); filterLengthRef.current = json.items.length; })
-        console.log(url);
     }, [btnValue, filterPagination]);
 
     return (
@@ -77,8 +71,8 @@ export const FilterPage: React.FC<FilterProps> = ({ value, btnValue, min, max, t
                     setTypeFilm1={setTypeFilm}
                     setValueChoice1={setValueChoice}
                 />
-                <div style={position} className='afterAside'>
-                    {filterLengthRef.current === 0 ? (<p className='zeroResponse' >Здесь будет отображаться список фильмов по вашим предпочтениям</p>) : (<p className='premieres'>Список на основе ваших предпочтений</p>)}
+                <div className='afterAside'>
+                    {filterLengthRef.current === 0 ? (<p className='zeroResponse filterZero' >Здесь будет отображаться список фильмов по вашим предпочтениям</p>) : (<p className='premieres'>Список на основе ваших предпочтений</p>)}
                     <ul className='posterList'>
                         {arr && arr.map((film, id) => (
                             <li className='poster' key={id}>

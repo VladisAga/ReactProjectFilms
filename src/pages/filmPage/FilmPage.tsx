@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Film } from '../../main/Main';
 import { useParams } from 'react-router-dom';
 import './filmPages.css';
@@ -31,9 +31,6 @@ export const FilmPage: React.FC<FilmPageProps> = ({ arrBasket, setArrBasket }) =
         const basket = [...arrBasket];
         const index = basket.findIndex((currentValue) => currentValue.kinopoiskId === filmIdObj.kinopoiskId);
         (index === -1) ? (setArrBasket([...arrBasket, filmIdObj])) : (setArrBasket([...basket]));
-        console.log(arrBasket);
-        console.log(index);
-        console.log(filmIdObj)
     }
 
     const handleDelFromBasket = () => {
@@ -42,16 +39,12 @@ export const FilmPage: React.FC<FilmPageProps> = ({ arrBasket, setArrBasket }) =
         setArrBasket([...basket2]);
     }
 
+    let svgColorRef = useRef({});
+
     useEffect(() => {
         (btnValue) ? (handleAddToBasket()) : (handleDelFromBasket());
+        (btnValue) ? (svgColorRef.current = { ...svgColorRef.current, fill: 'yellow' }) : (svgColorRef.current = { ...svgColorRef.current, fill: 'white' });
     }, [btnValue]);
-
-    let btnStyle;
-
-    (btnValue) ?
-        (btnStyle = { backgroundImage: `url(data:image/svg+xml;charset=utf-8,%3Csvg width='24' height='24' xmlns='http://www.w3.org/2000/svg' fill='%23f50'%3E%3Cpath d='M5.5 3.5h13V21L12 17.45 5.5 21V3.5Z'/%3E%3C/svg%3E)` })
-        :
-        (btnStyle = { backgroundImage: `url(data:image/svg+xml;charset=utf-8,%3Csvg width='24' height='24' xmlns='http://www.w3.org/2000/svg' fill=white d='M5.5 3.5h13V21L12 17.45 5.5 21V3.5Z'/%3E%3C/svg%3E)` });
 
     return (
         <>
@@ -67,7 +60,14 @@ export const FilmPage: React.FC<FilmPageProps> = ({ arrBasket, setArrBasket }) =
                     </div>
                     <article className='infAboutFilm'>
                         <div>
-                            <h1>{filmIdObj?.nameRu}({filmIdObj?.year})</h1>
+                            <div className='nameAndBasket'>
+                                <h1>{filmIdObj?.nameRu}({filmIdObj?.year})</h1>
+                                <div onClick={() => { setBtnValue(!btnValue) }} >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" style={svgColorRef.current} stroke="black" stroke-width="2">
+                                        <path d="M5.5 3.5h13V21L12 17.45 5.5 21V3.5Z" transform="scale(2)" />
+                                    </svg>
+                                </div>
+                            </div>
                             <p>{filmIdObj?.nameOriginal}</p>
                         </div>
                         <div className='infFilm'>
@@ -101,12 +101,8 @@ export const FilmPage: React.FC<FilmPageProps> = ({ arrBasket, setArrBasket }) =
                     <p>Description</p>
                     <p>{filmIdObj?.description}</p>
                 </div>
-                <button onClick={() => { setBtnValue(!btnValue) }}> dcscs</button>
-                <div >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" stroke="black" stroke-width="2">
-                        <path d="M5.5 3.5h13V21L12 17.45 5.5 21V3.5Z" />
-                    </svg>
-                </div>
+
+
             </main>
         </>
     )

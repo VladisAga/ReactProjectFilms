@@ -1,0 +1,49 @@
+.positionFilter {
+    display: flex;
+    flex-direction: column;
+    margin: 20px auto 0;
+    position: sticky;
+    top: 87px;
+    max-width: 200px;
+}
+
+.positionFilter select {
+    max-width: 50px;
+    outline: none;
+}
+
+.positionFilter p {
+    font-family: cursive;
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.positionFilter option {
+    font-family: cursive;
+}
+
+.positionFilter input {
+    outline: none;
+}
+
+.btnFilter {
+    width: 150px;
+    margin: 20px auto 0;
+    font-family: cursive;
+    font-weight: 600;
+    border: none;
+    background-color: white;
+    border-radius: 20px;
+    font-size: 22px;
+    transition-duration: .5s;
+}
+
+.btnFilter:hover {
+    background-color: yellow;
+    color: black;
+} 
+
+.filterZero {
+    transform: translate(-50%);
+    top: 87px;
+}

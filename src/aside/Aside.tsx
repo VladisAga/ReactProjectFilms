@@ -14,10 +14,10 @@ interface HeaderProps {
     btnValue1: boolean;
     value1: string;
     setValueChoice1: (value1: string) => void;
-    setBtnValue1: (btnValue1:boolean) => void;
+    setBtnValue1: (btnValue1: boolean) => void;
 }
 
-export const Aside: React.FC<HeaderProps> = ({value1, min1, max1, type1, btnValue1, setBtnValue1, setTypeFilm1, setMinRating1,setMaxRating1, setValueChoice1}) => {
+export const Aside: React.FC<HeaderProps> = ({ value1, min1, max1, type1, btnValue1, setBtnValue1, setTypeFilm1, setMinRating1, setMaxRating1, setValueChoice1 }) => {
 
     const { min, max, value, type, btnValue, setArrBasket, arrBasket, setMaxRating, setMinRating, setTypeFilm, setBtnValue, setValueChoice } = useContext(ForAside);
     const location = useLocation();
@@ -25,8 +25,6 @@ export const Aside: React.FC<HeaderProps> = ({value1, min1, max1, type1, btnValu
     let styleMain;
     let styleFilter;
     let styleBasket;
-
-    console.log(max + 'min')
 
     switch (location.pathname) {
         case ('/'):
@@ -43,6 +41,8 @@ export const Aside: React.FC<HeaderProps> = ({value1, min1, max1, type1, btnValu
     return (
         <>
             <aside>
+                <div className='div'></div>
+
                 {(location.pathname === '/filterPage') ? (<FilterJsx
                     type={type1}
                     setType={setTypeFilm1}
@@ -55,16 +55,18 @@ export const Aside: React.FC<HeaderProps> = ({value1, min1, max1, type1, btnValu
                     setBtnValue={setBtnValue1}
                     btnValue={btnValue1}
                 />) :
-                    (<nav className='navigation'>
-                        <Link style={styleMain} target='_blanck' to='/'>Главная</Link>
-                        <Link style={styleFilter} target='_blanck' to={{
-                            pathname: '/filterPage',
-                            search: `?value=${value}&btnValue=${btnValue}&min=${min}&setMaxRating=${setMaxRating}&setMinRating=${setMinRating}&type=${type}&setTypeFilm=${setTypeFilm}&setBtnValue=${setBtnValue}&setValueChoice=${setValueChoice}`,
-                        }}> Filter </Link>
-                        <Link style={styleBasket} to={{
-                            pathname: '/basket',
-                        }}>Basket</Link>
-                    </nav>)}
+                    (
+                        <nav className='navigation'>
+                            <Link style={styleMain} to='/'>Главная</Link>
+                            <Link style={styleFilter} to={{
+                                pathname: '/filterPage',
+                                search: `?value=${value}&btnValue=${btnValue}&min=${min}&setMaxRating=${setMaxRating}&setMinRating=${setMinRating}&type=${type}&setTypeFilm=${setTypeFilm}&setBtnValue=${setBtnValue}&setValueChoice=${setValueChoice}`,
+                            }}> Filter </Link>
+                            <Link style={styleBasket} to={{
+                                pathname: '/basket',
+                            }}>Basket</Link>
+                        </nav>
+                    )}
             </aside>
         </>
     )

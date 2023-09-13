@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext, useRef, createContext } from 'react';
 import { Link} from "react-router-dom";
+import { CSSProperties } from 'react';
 import './main.css';
 import { StringSearchValue } from '../App';
 import { Aside } from '../aside/Aside';
@@ -87,16 +88,18 @@ export const Main: React.FC<MainProps> = ({ btnValue, valueChoice, minRating, ma
     const [pageKeyWord, setPageKeyWord] = useState<number>(1);
     const [pagePopular, setPagePopular] = useState<number>(1);
 
-    console.log(maxRating)
-
     const jsonRef = useRef<number>(0);
     const urlRef = useRef<string>('');
     const urlTopRef = useRef<string>('');
     const ArrJsonRef = useRef<Film[]>([]);  
 
-    let position;
+    let position: CSSProperties;
 
-    (filmArr.length === 0 && jsonRef.current === 0) ? (position = {left: '50%', transform: 'translate(-25%)'}) : (position = {left: '19.6vw'});
+    if (filmArr.length === 0 && jsonRef.current === 0) {
+      position = { position: 'sticky', top: '87px' };
+    } else {
+      position = { position: 'relative' };
+    }
 
     useEffect(() => {
         setFilmArr([]);
@@ -108,8 +111,6 @@ export const Main: React.FC<MainProps> = ({ btnValue, valueChoice, minRating, ma
         else urlRef.current = `https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=${value}=${pageKeyWord}`;
 
         (urlRef.current === urlTopRef.current) ? setPageKeyWord(1) : setPagePopular(1);
-
-        console.log(urlRef.current);
 
         fetch(urlRef.current, {
             method: 'GET',
@@ -161,8 +162,8 @@ export const Main: React.FC<MainProps> = ({ btnValue, valueChoice, minRating, ma
                     setValueChoice1={setValueChoice}
                     />
                 </ForAside.Provider>
-                <div style={position} className='afterAside'>
-                    {urlRef.current === urlTopRef.current ? (<p className='premieres'>Popular films: top 100 </p>) : (<p className='premieres'>Your search: {value}</p>)}
+                <div className='afterAside'>
+                    {urlRef.current === urlTopRef.current ? (<p style={position} className='premieres'>Popular films: top 100 </p>) : (<p style={position} className='premieres'>Your search: {value}</p>)}
                     <ul className='posterList'>
                         {filmArr && filmArr.map((film, id) => (
                             <li className='poster' key={id}>
