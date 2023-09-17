@@ -62,7 +62,7 @@ export const Header: React.FC<HeaderProps> = () => {
                         (<nav className='headerNav'>
                             <Link style={styleMain} to='/'>Home</Link>
                             <Link style={styleFilter} to='/filterPage'>Filter</Link>
-                            <Link style={styleBasket} to='/basket'>Basket</Link>
+                            <Link style={styleBasket} to='/basket'>Favourites</Link>
                         </nav>
                         )
                     }

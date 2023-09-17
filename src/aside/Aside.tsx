@@ -57,14 +57,14 @@ export const Aside: React.FC<HeaderProps> = ({ value1, min1, max1, type1, btnVal
                 />) :
                     (
                         <nav className='navigation'>
-                            <Link style={styleMain} to='/'>Главная</Link>
+                            <Link style={styleMain} to='/'>Home</Link>
                             <Link style={styleFilter} to={{
                                 pathname: '/filterPage',
                                 search: `?value=${value}&btnValue=${btnValue}&min=${min}&setMaxRating=${setMaxRating}&setMinRating=${setMinRating}&type=${type}&setTypeFilm=${setTypeFilm}&setBtnValue=${setBtnValue}&setValueChoice=${setValueChoice}`,
                             }}> Filter </Link>
                             <Link style={styleBasket} to={{
                                 pathname: '/basket',
-                            }}>Basket</Link>
+                            }}>Favourites</Link>
                         </nav>
                     )}
             </aside>
