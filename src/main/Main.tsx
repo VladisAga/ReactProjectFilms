@@ -30,6 +30,7 @@ interface MainProps {
     minRating: string;
     maxRating: string;
     typeFilm: string;
+    pageColor: {};
 }
 
 interface FilmArrayContext {
@@ -80,7 +81,7 @@ export const ForAside = createContext<ContextProps>({
     setBtnValue: () => { },
 });
 
-export const Main: React.FC<MainProps> = ({ btnValue, valueChoice, minRating, maxRating, typeFilm }) => {
+export const Main: React.FC<MainProps> = ({ btnValue, valueChoice, minRating, maxRating, typeFilm, pageColor }) => {
 
     const [filmArr, setFilmArr] = useState<Film[]>([]);
     const [filmArr1, setFilmArr1] = useState<Film[]>([]);
@@ -134,7 +135,7 @@ export const Main: React.FC<MainProps> = ({ btnValue, valueChoice, minRating, ma
 
     return (
         <>
-            <main className='main'>
+            <main style={pageColor} className='main'>
                 <ForAside.Provider value={{
                     btnValue: btnValue,
                     value: valueChoice,

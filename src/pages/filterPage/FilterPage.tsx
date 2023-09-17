@@ -13,6 +13,7 @@ interface FilterProps {
     min: string;
     max: string;
     type: string;
+    pageColor: {};
     setTypeFilm: React.Dispatch<React.SetStateAction<string>>,
     setMaxRating: React.Dispatch<React.SetStateAction<string>>,
     setMinRating: React.Dispatch<React.SetStateAction<string>>,
@@ -32,7 +33,7 @@ export const FilterDataPagination = createContext<FilterContext>({
     setFilterPagination: () => { },
 });
 
-export const FilterPage: React.FC<FilterProps> = ({ value, btnValue, min, max, type, setBtnValue, setMaxRating, setMinRating, setTypeFilm, setValueChoice }) => {
+export const FilterPage: React.FC<FilterProps> = ({ value, btnValue, min, max, type, setBtnValue, setMaxRating, setMinRating, setTypeFilm, setValueChoice, pageColor }) => {
 
     const [filterPagination, setFilterPagination] = useState(1);
     const filterLengthRef = useRef(0);
@@ -58,7 +59,7 @@ export const FilterPage: React.FC<FilterProps> = ({ value, btnValue, min, max, t
 
     return (
         <>
-            <main className='main'>
+            <main style={pageColor} className='main '>
                 <Aside
                     value1={value}
                     btnValue1={btnValue}
@@ -71,9 +72,9 @@ export const FilterPage: React.FC<FilterProps> = ({ value, btnValue, min, max, t
                     setTypeFilm1={setTypeFilm}
                     setValueChoice1={setValueChoice}
                 />
-                <div className='afterAside'>
+                <div className='afterAside filterMain'>
                     {filterLengthRef.current === 0 ? (<p className='zeroResponse filterZero' >Здесь будет отображаться список фильмов по вашим предпочтениям</p>) : (<p className='premieres'>Список на основе ваших предпочтений</p>)}
-                    <ul className='posterList'>
+                    <ul className='posterList '>
                         {arr && arr.map((film, id) => (
                             <li className='poster' key={id}>
                                 <div className='posterRating'>

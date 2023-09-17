@@ -73,7 +73,7 @@ header {
     padding-bottom: 4px;
 }
 
-.headerForm input:last-child {
+.headerForm .searchBtn {
     background-color: rgba(255, 255, 255, 0.1);
     border: none;
     border-radius: 0 10px 10px 0;
@@ -84,9 +84,12 @@ header {
 }
 
 .changeColorBtn {
-    background-color: aqua;
     width: 30px;
     height: 30px;
+}
+
+.changeColorBtn img {
+    width: 100%;
 }
 
 .headerNav a {

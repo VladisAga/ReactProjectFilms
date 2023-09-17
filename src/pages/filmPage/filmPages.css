@@ -4,6 +4,7 @@
     padding-top: 86px;
     position: relative;
     font-family: cursive;
+    height: calc(100vh - 86px);
 }
 
 .boxMain {
@@ -29,6 +30,7 @@
 }
 
 .filmPageRating {
+    color: black;
     border-radius: 30px;
     position: absolute;
     width: 3em;
@@ -68,11 +70,9 @@
 .infAboutFilm p {
     margin: 5px 0 0;
     font-size: 1.7em;
-    color: rgb(0, 0, 0);
 }
 
 .infTopic p {
-    color: rgba(0, 0, 0, 0.7);
     margin: 0;
     font-size: 26px;
 }
@@ -86,7 +86,6 @@
     margin-top: 30px;
     font-size: 32px;
     font-weight: bolder;
-    color: black;
 }
 
 .infFilmData p {
@@ -133,7 +132,6 @@
     margin: 15px 0 0;
     font-size: 32px;
     font-weight: bolder;
-    color: black;
 }
 
 .desription p:last-child {

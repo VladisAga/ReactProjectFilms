@@ -26,6 +26,11 @@ type Context = {
   setArrBasket: React.Dispatch<React.SetStateAction<any[]>>
 }
 
+type PageColorContext = {
+  colorState: boolean;
+  setColorState: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
 export const StringSearchValue = createContext<Context>({
   value: '',
   submit: () => { },
@@ -44,6 +49,8 @@ export const StringSearchValue = createContext<Context>({
   setArrBasket: () => { }
 });
 
+export const SetColor = createContext<PageColorContext>({ colorState: true, setColorState: () => { } });
+
 function App() {
   const [filterValue, setFilterValue] = useState<string>('');
   const [typeFilm, setTypeFilm] = useState<string>('');
@@ -52,15 +59,30 @@ function App() {
   const [valueChoice, setValueChoice] = useState<string>('');
   const [btnValue, setBtnValue] = useState<boolean>(false);
 
-const [arrBasket, setArrBasket] = useState<Film[]>(() => {
-  const savedArrBasket = localStorage.getItem('arrBasket');
-  return savedArrBasket ? JSON.parse(savedArrBasket) : [];
-});
+  const [colorState, setColorState] = useState(true);
+  let pageColor;
+  if (colorState) {
+    pageColor = {
+      backgroundColor: 'white',
+      color: 'black'
+    }
+  } else {
+    pageColor = {
+      backgroundColor: 'black',
+      color: 'white'
+    }
+  }
 
-// Сохраняйте arrBasket в localStorage при каждом его обновлении
-useEffect(() => {
-  localStorage.setItem('arrBasket', JSON.stringify(arrBasket));
-}, [arrBasket]);
+
+  const [arrBasket, setArrBasket] = useState<Film[]>(() => {
+    const savedArrBasket = localStorage.getItem('arrBasket');
+    return savedArrBasket ? JSON.parse(savedArrBasket) : [];
+  });
+
+  // Сохраняйте arrBasket в localStorage при каждом его обновлении
+  useEffect(() => {
+    localStorage.setItem('arrBasket', JSON.stringify(arrBasket));
+  }, [arrBasket]);
 
 
   const submit = (event: any) => {
@@ -72,7 +94,6 @@ useEffect(() => {
 
   const del = () => {
     const valueInput = document.querySelector('.searchInput') as HTMLInputElement | null;
-
     if (valueInput) {
       valueInput.value = '';
     }
@@ -81,6 +102,7 @@ useEffect(() => {
   return (
     <div className="App">
       <Router>
+      <SetColor.Provider value={{ colorState: colorState, setColorState }}>
         <StringSearchValue.Provider
           value={{
             value: filterValue,
@@ -109,40 +131,43 @@ useEffect(() => {
             setMax={setMaxRating}
           />
         </StringSearchValue.Provider>
+        </SetColor.Provider>
 
         <Routes>
-          <Route path="/" element={
-            <StringSearchValue.Provider
-              value={{
-                value: filterValue,
-                submit,
-                del,
-                setMaxRating,
-                setMinRating,
-                setTypeFilm,
-                setValueChoice,
-                setBtnValue,
-                valueChoice: valueChoice,
-                btnValue: btnValue,
-                minRating: minRating,
-                maxRating: maxRating,
-                typeFilm: typeFilm,
-                arrBasket: arrBasket,
-                setArrBasket
-              }}
-            >
-              <Main
-                btnValue={btnValue}
-                valueChoice={valueChoice}
-                minRating={minRating}
-                maxRating={maxRating}
-                typeFilm={typeFilm}
-              />
-            </StringSearchValue.Provider>
+          <Route path="/" element={          
+              <StringSearchValue.Provider
+                value={{
+                  value: filterValue,
+                  submit,
+                  del,
+                  setMaxRating,
+                  setMinRating,
+                  setTypeFilm,
+                  setValueChoice,
+                  setBtnValue,
+                  valueChoice: valueChoice,
+                  btnValue: btnValue,
+                  minRating: minRating,
+                  maxRating: maxRating,
+                  typeFilm: typeFilm,
+                  arrBasket: arrBasket,
+                  setArrBasket
+                }}
+              >
+                <Main
+                  btnValue={btnValue}
+                  valueChoice={valueChoice}
+                  minRating={minRating}
+                  maxRating={maxRating}
+                  typeFilm={typeFilm}
+                  pageColor={pageColor}
+                />
+              </StringSearchValue.Provider>
           } />
           <Route path="filmPage/:filmId" element={<FilmPage
             arrBasket={arrBasket}
             setArrBasket={setArrBasket}
+            pageColor={pageColor}
           />} />
           <Route
             path='filterPage'
@@ -152,6 +177,7 @@ useEffect(() => {
               min={minRating}
               max={maxRating}
               type={typeFilm}
+              pageColor={pageColor}
               setBtnValue={setBtnValue}
               setMaxRating={setMaxRating}
               setMinRating={setMinRating}
@@ -159,10 +185,13 @@ useEffect(() => {
               setValueChoice={setValueChoice}
             />}
           />
-          <Route path='basket' element={<Basket
-            arrBasket={arrBasket}
-            setArrBasket={setArrBasket}
-          />} />
+          <Route path='basket' element={
+              <Basket
+                arrBasket={arrBasket}
+                setArrBasket={setArrBasket}
+                pageColor={pageColor}
+              />
+          } />
 
         </Routes>
       </Router>

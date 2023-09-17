@@ -1,5 +1,4 @@
 import { Film } from "../../main/Main";
-import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import './basket.css';
 import { lengthName, getRatingStyle, ratingOnPage } from '../../main/function';
@@ -7,9 +6,10 @@ import { lengthName, getRatingStyle, ratingOnPage } from '../../main/function';
 interface BasketProps {
     arrBasket: Film[];
     setArrBasket: (arr: Film[]) => void;
+    pageColor: {};
 }
 
-export const Basket: React.FC<BasketProps> = ({ setArrBasket, arrBasket }) => {
+export const Basket: React.FC<BasketProps> = ({ setArrBasket, arrBasket, pageColor }) => {
 
     const handleDelFromBasket = (id: number) => {
         const basket = [...arrBasket];
@@ -19,7 +19,7 @@ export const Basket: React.FC<BasketProps> = ({ setArrBasket, arrBasket }) => {
 
     return (
         <>
-            <main style={{ maxWidth: '1500px' }} className="main mainBasket">
+            <main style={ pageColor} className="main mainBasket">
                 {arrBasket.length === 0 ? (<p className='premieres basketP'>Список предпочтений пуст</p>) : (<p className='premieres basketP' >Избранный список предпочтений</p>)}
                 <ul className='posterList ulBasket'>
                     {arrBasket.map((value: any, id: any) => (

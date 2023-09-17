@@ -7,9 +7,10 @@ import { ratingOnPage, getRatingStyle } from '../../main/function';
 interface FilmPageProps {
     arrBasket: Film[];
     setArrBasket: (arr: Film[]) => void;
+    pageColor: {};
 }
 
-export const FilmPage: React.FC<FilmPageProps> = ({ arrBasket, setArrBasket }) => {
+export const FilmPage: React.FC<FilmPageProps> = ({ arrBasket, setArrBasket, pageColor }) => {
     const { filmId } = useParams();
     const [btnValue, setBtnValue] = useState(false);
 
@@ -56,7 +57,7 @@ export const FilmPage: React.FC<FilmPageProps> = ({ arrBasket, setArrBasket }) =
 
     return (
         <>
-            <main className='mainFilmPage'>
+            <main style={pageColor} className='mainFilmPage'>
                 <div className='boxMain'>
                     <div className='posterAndRating'>
                         <div className='boxImg'>
@@ -80,7 +81,7 @@ export const FilmPage: React.FC<FilmPageProps> = ({ arrBasket, setArrBasket }) =
                         </div>
                         <div className='infFilm'>
                             <div className='infTopic'>
-                                <p>О фильме </p>
+                                <p >О фильме </p>
                                 <p>Год производства </p>
                                 <p >Страна</p>
                                 <p>Жанр</p>
@@ -100,7 +101,7 @@ export const FilmPage: React.FC<FilmPageProps> = ({ arrBasket, setArrBasket }) =
                                     </ul>
                                 </div>
                                 <p>{filmIdObj?.filmLength + ' мин.'}</p>
-                                <div><a href={filmIdObj?.webUrl}>Click</a></div>
+                                <div><a style={pageColor}  href={filmIdObj?.webUrl}>Click</a></div>
                             </div>
                         </div>
                     </article>

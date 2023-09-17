@@ -1,12 +1,15 @@
 .ulBasket {
     max-width: 1500px;
     margin-top: 30px;
-} 
+    padding: 0 40px;
+}
 
 .mainBasket {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    max-width: 1600px;
+    height: 100vh;
 }
 
 .basketP {
