@@ -41,6 +41,14 @@ export const FilmPage: React.FC<FilmPageProps> = ({ arrBasket, setArrBasket }) =
 
     let svgColorRef = useRef({});
 
+    let indexFilm = arrBasket.findIndex((currentValue) => currentValue.kinopoiskId === filmIdObj.kinopoiskId);
+
+    if (indexFilm !== -1 && btnValue === false) {
+        setBtnValue(!btnValue);
+        (btnValue) ? (svgColorRef.current = { ...svgColorRef.current, fill: 'yellow' }) : (svgColorRef.current = { ...svgColorRef.current, fill: 'white' });
+        (btnValue) ? (handleAddToBasket()) : (handleDelFromBasket());
+    }
+        
     useEffect(() => {
         (btnValue) ? (handleAddToBasket()) : (handleDelFromBasket());
         (btnValue) ? (svgColorRef.current = { ...svgColorRef.current, fill: 'yellow' }) : (svgColorRef.current = { ...svgColorRef.current, fill: 'white' });
@@ -101,8 +109,6 @@ export const FilmPage: React.FC<FilmPageProps> = ({ arrBasket, setArrBasket }) =
                     <p>Description</p>
                     <p>{filmIdObj?.description}</p>
                 </div>
-
-
             </main>
         </>
     )

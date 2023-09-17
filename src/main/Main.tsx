@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, useRef, createContext } from 'react';
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { CSSProperties } from 'react';
 import './main.css';
 import { StringSearchValue } from '../App';
@@ -73,11 +73,11 @@ export const ForAside = createContext<ContextProps>({
     type: '',
     arrBasket: [],
     setArrBasket: () => { },
-    setTypeFilm: () => {},
-    setMaxRating: () => {},
-    setMinRating: () => {},
-    setValueChoice: () => {},
-    setBtnValue: () => {},
+    setTypeFilm: () => { },
+    setMaxRating: () => { },
+    setMinRating: () => { },
+    setValueChoice: () => { },
+    setBtnValue: () => { },
 });
 
 export const Main: React.FC<MainProps> = ({ btnValue, valueChoice, minRating, maxRating, typeFilm }) => {
@@ -91,14 +91,14 @@ export const Main: React.FC<MainProps> = ({ btnValue, valueChoice, minRating, ma
     const jsonRef = useRef<number>(0);
     const urlRef = useRef<string>('');
     const urlTopRef = useRef<string>('');
-    const ArrJsonRef = useRef<Film[]>([]);  
+    const ArrJsonRef = useRef<Film[]>([]);
 
     let position: CSSProperties;
 
     if (filmArr.length === 0 && jsonRef.current === 0) {
-      position = { position: 'sticky', top: '87px' };
+        position = { position: 'sticky', top: '87px' };
     } else {
-      position = { position: 'relative' };
+        position = { position: 'relative' };
     }
 
     useEffect(() => {
@@ -144,22 +144,22 @@ export const Main: React.FC<MainProps> = ({ btnValue, valueChoice, minRating, ma
                     arrBasket: arrBasket,
                     setArrBasket,
                     setMaxRating,
-                    setMinRating, 
+                    setMinRating,
                     setTypeFilm,
                     setValueChoice,
                     setBtnValue
                 }}>
                     <Aside
-                    value1={value}
-                    btnValue1={btnValue}
-                    min1={minRating}
-                    max1={maxRating}
-                    setBtnValue1={setBtnValue}
-                    setMaxRating1={setMaxRating}
-                    setMinRating1={setMinRating}
-                    setTypeFilm1={setTypeFilm}
-                    type1={typeFilm}
-                    setValueChoice1={setValueChoice}
+                        value1={value}
+                        btnValue1={btnValue}
+                        min1={minRating}
+                        max1={maxRating}
+                        setBtnValue1={setBtnValue}
+                        setMaxRating1={setMaxRating}
+                        setMinRating1={setMinRating}
+                        setTypeFilm1={setTypeFilm}
+                        type1={typeFilm}
+                        setValueChoice1={setValueChoice}
                     />
                 </ForAside.Provider>
                 <div className='afterAside'>
