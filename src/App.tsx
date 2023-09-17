@@ -1,4 +1,4 @@
-import React, { createContext, FormEvent, useState } from 'react';
+import React, { createContext, FormEvent, useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import { Header } from './header/Header';
@@ -29,9 +29,9 @@ type Context = {
 export const StringSearchValue = createContext<Context>({
   value: '',
   submit: () => { },
-  setTypeFilm: () => {},
-  setMaxRating: () => {},
-  setMinRating: () => {},
+  setTypeFilm: () => { },
+  setMaxRating: () => { },
+  setMinRating: () => { },
   del: () => { },
   valueChoice: '',
   btnValue: false,
@@ -52,7 +52,16 @@ function App() {
   const [valueChoice, setValueChoice] = useState<string>('');
   const [btnValue, setBtnValue] = useState<boolean>(false);
 
-  const [arrBasket, setArrBasket] = useState<Film[]>([]);
+const [arrBasket, setArrBasket] = useState<Film[]>(() => {
+  const savedArrBasket = localStorage.getItem('arrBasket');
+  return savedArrBasket ? JSON.parse(savedArrBasket) : [];
+});
+
+// Сохраняйте arrBasket в localStorage при каждом его обновлении
+useEffect(() => {
+  localStorage.setItem('arrBasket', JSON.stringify(arrBasket));
+}, [arrBasket]);
+
 
   const submit = (event: any) => {
     event.preventDefault();
@@ -82,7 +91,7 @@ function App() {
             setValueChoice,
             setBtnValue,
             setMaxRating,
-            setMinRating, 
+            setMinRating,
             setTypeFilm,
             minRating: minRating,
             maxRating: maxRating,
@@ -109,7 +118,7 @@ function App() {
                 submit,
                 del,
                 setMaxRating,
-                setMinRating, 
+                setMinRating,
                 setTypeFilm,
                 setValueChoice,
                 setBtnValue,
