@@ -13,6 +13,7 @@ interface FilmPageProps {
 export const FilmPage: React.FC<FilmPageProps> = ({ arrBasket, setArrBasket, pageColor }) => {
     const { filmId } = useParams();
     const [btnValue, setBtnValue] = useState(false);
+    const watchFilmRef = useRef('');
 
     const [filmIdObj, setFilmIdObj] = useState<Film>({} as Film);
 
@@ -27,6 +28,13 @@ export const FilmPage: React.FC<FilmPageProps> = ({ arrBasket, setArrBasket, pag
             .then(res => res.json())
             .then(json => setFilmIdObj(json as Film))
     }, [filmId]);
+
+    useEffect(() => {
+        let url = filmIdObj && filmIdObj.webUrl;
+        let newUrl = url && url.replace('kino', 'ss');
+        watchFilmRef.current = newUrl;
+        console.log(watchFilmRef.current)
+    })
 
     const handleAddToBasket = () => {
         const basket = [...arrBasket];
@@ -49,7 +57,7 @@ export const FilmPage: React.FC<FilmPageProps> = ({ arrBasket, setArrBasket, pag
         (btnValue) ? (svgColorRef.current = { ...svgColorRef.current, fill: 'yellow' }) : (svgColorRef.current = { ...svgColorRef.current, fill: 'white' });
         (btnValue) ? (handleAddToBasket()) : (handleDelFromBasket());
     }
-        
+
     useEffect(() => {
         (btnValue) ? (handleAddToBasket()) : (handleDelFromBasket());
         (btnValue) ? (svgColorRef.current = { ...svgColorRef.current, fill: 'yellow' }) : (svgColorRef.current = { ...svgColorRef.current, fill: 'white' });
@@ -86,7 +94,7 @@ export const FilmPage: React.FC<FilmPageProps> = ({ arrBasket, setArrBasket, pag
                                 <p >Страна</p>
                                 <p>Жанр</p>
                                 <p className='filmLength'>Длительность</p>
-                                <p>Узнать гораздо больше</p>
+                                <p>Посмотреть фильм</p>
                             </div>
                             <div className='infFilmData'>
                                 <p>{filmIdObj?.year}</p>
@@ -101,7 +109,7 @@ export const FilmPage: React.FC<FilmPageProps> = ({ arrBasket, setArrBasket, pag
                                     </ul>
                                 </div>
                                 <p>{filmIdObj?.filmLength + ' мин.'}</p>
-                                <div><a style={pageColor}  href={filmIdObj?.webUrl}>Click</a></div>
+                                <div><a style={pageColor} href={watchFilmRef.current}>Click</a></div>
                             </div>
                         </div>
                     </article>
